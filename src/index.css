@@ -3,19 +3,19 @@
 
 :root {
   font-family: 'Inter', sans-serif;
-  color: #e2eee9;
+  color: #eaf5f2;
   background: #071310;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg: #071310;
-  --sidebar: #091a16;
-  --panel: #0d201c;
-  --panel-hover: #102722;
-  --border: #1c3932;
-  --green: #00d6a0;
+  --bg: #060d0c;
+  --sidebar: #07100f;
+  --panel: #0a1816;
+  --panel-hover: #0c1f1c;
+  --border: #14312c;
+  --green: #2fd6a6;
   --muted: #78918a;
 }
 

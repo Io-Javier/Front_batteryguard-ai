@@ -28,7 +28,7 @@ export default function Sidebar({ active, setActive }) {
         </div>
 
         <div>
-          <h2>ENERGY<span>CONTROL</span></h2>
+          <h2>BATTERY<span>GUARD</span></h2>
           <small>MONITORING SYSTEM</small>
         </div>
       </div>
@@ -69,7 +69,7 @@ export default function Sidebar({ active, setActive }) {
           <span>Configuración</span>
         </button>
 
-        <small>ENERGY CONTROL v1.0</small>
+        <small>BATTERYGUARD v1.0</small>
 
       </div>
 

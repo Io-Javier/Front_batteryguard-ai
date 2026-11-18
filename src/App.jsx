@@ -54,7 +54,7 @@ function App() {
         </div>
 
         <footer>
-          ENERGY CONTROL © 2026
+          BATTERYGUARD © 2026
         </footer>
 
       </main>

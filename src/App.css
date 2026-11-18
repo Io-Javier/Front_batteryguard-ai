@@ -11,7 +11,7 @@
   width: 245px;
   min-width: 245px;
   min-height: 100vh;
-  background: var(--sidebar);
+  background: linear-gradient(180deg, #07100f, #060d0c);
   border-right: 1px solid var(--border);
   padding: 28px 16px;
   display: flex;
@@ -22,15 +22,18 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 0 8px;
-  margin-bottom: 55px;
+  height: 90px;
+  margin: -28px -16px 37px;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border);
 }
 
 .brand-logo {
   color: var(--green);
-  background: #10382d;
+  background: #0b2a24;
+  border: 1px solid #1d5c4c;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 11px;
 }
 
 .brand h2 {
@@ -51,7 +54,7 @@
 
 .menu-title {
   font-size: 9px;
-  color: #607a70;
+  color: var(--muted);
   letter-spacing: 1.5px;
   padding: 0 10px;
   margin-bottom: 16px;
@@ -64,32 +67,50 @@
 }
 
 .menu-item {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 14px;
   width: 100%;
-  padding: 13px 12px;
+  padding: 14px 14px 14px 18px;
   border: none;
-  border-radius: 6px;
-  color: #8da79d;
+  border-radius: 12px;
+  color: var(--muted);
   background: transparent;
   font-size: 11px;
   text-align: left;
   transition: .2s;
 }
 
-.menu-item:hover,
-.menu-item.active {
-  background: #10372c;
-  color: var(--green);
+.menu-item:hover {
+  color: #eaf5f2;
 }
 
 .menu-item.active {
-  box-shadow: inset 2px 0 var(--green);
+  background: linear-gradient(
+    90deg,
+    rgba(47, 214, 166, 0.20) 0%,
+    rgba(47, 214, 166, 0.06) 55%,
+    rgba(47, 214, 166, 0.02) 100%
+  );
+  color: var(--green);
+  box-shadow: none;
+}
+
+.menu-item.active::before {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--green);
 }
 
 .sidebar-bottom {
   margin-top: auto;
+  padding: 0 16px 20px;
 }
 
 .system-status {
@@ -112,6 +133,7 @@
   background: var(--green);
   border-radius: 50%;
   margin-left: auto;
+  box-shadow: 0 0 8px var(--green);
 }
 
 .sidebar-bottom > small {
