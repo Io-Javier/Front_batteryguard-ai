@@ -1,46 +1,54 @@
-
 import PhaseCard from "./PhaseCard";
 
-const phases = [
+const emptyBmsBlocks = [
   {
-    phase: "L1",
-    voltage: "220.4",
-    current: "15.2",
-    power: "3.35",
-    color: "#00d6a0"
+    stage: "Celdas y desbalance",
+    primaryValue: "0.00",
+    primaryUnit: "V / celda",
+    metricOneLabel: "Desbalance",
+    metricOneValue: "0 mV",
+    metricTwoLabel: "Resistencia interna",
+    metricTwoValue: "0.00 Ω",
+    color: "#00d6a0",
   },
   {
-    phase: "L2",
-    voltage: "219.8",
-    current: "16.1",
-    power: "3.54",
-    color: "#38a5ff"
+    stage: "Energía y carga",
+    primaryValue: "0.0",
+    primaryUnit: "kWh rest.",
+    metricOneLabel: "Potencia carga",
+    metricOneValue: "0.0 kW",
+    metricTwoLabel: "Pérdida capacidad",
+    metricTwoValue: "0.0 %",
+    color: "#38a5ff",
   },
   {
-    phase: "L3",
-    voltage: "221.1",
-    current: "15.6",
-    power: "3.45",
-    color: "#b58aff"
-  }
+    stage: "Alertas del BMS",
+    primaryValue: "0",
+    primaryUnit: "avisos",
+    metricOneLabel: "Fallas sensores",
+    metricOneValue: "0",
+    metricTwoLabel: "Voltaje anormal",
+    metricTwoValue: "0",
+    color: "#b58aff",
+  },
 ];
 
-export default function Phases() {
+export default function Phases({ tests = emptyBmsBlocks }) {
   return (
     <section className="phases-section">
 
       <div className="section-heading">
         <div>
-          <h2>Parámetros por fase</h2>
-          <p>Distribución eléctrica trifásica</p>
+          <h2>Diagnóstico BMS del paquete</h2>
+          <p>Estado por celda, energía restante y contadores de seguridad del BMS</p>
         </div>
       </div>
 
       <div className="phases-grid">
-        {phases.map((phase) => (
+        {tests.map((test) => (
           <PhaseCard
-            key={phase.phase}
-            {...phase}
+            key={test.stage}
+            {...test}
           />
         ))}
       </div>

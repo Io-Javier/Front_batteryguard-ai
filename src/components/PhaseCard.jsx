@@ -1,32 +1,40 @@
+import { Activity } from "lucide-react";
 
-import { Activity, Zap } from "lucide-react";
-
-export default function PhaseCard({ phase, voltage, current, power, color }) {
+export default function PhaseCard({
+  stage,
+  primaryValue,
+  primaryUnit,
+  metricOneLabel,
+  metricOneValue,
+  metricTwoLabel,
+  metricTwoValue,
+  color,
+}) {
   return (
     <div className="phase-card">
 
       <div className="phase-header">
         <div className="phase-name">
           <span style={{ background: color }} />
-          <h3>Fase {phase}</h3>
+          <h3>{stage}</h3>
         </div>
         <Activity size={18} color={color} />
       </div>
 
       <div className="phase-voltage">
-        {voltage}
-        <small> V</small>
+        {primaryValue}
+        <small> {primaryUnit}</small>
       </div>
 
       <div className="phase-details">
         <div>
-          <span>Corriente</span>
-          <strong>{current} A</strong>
+          <span>{metricOneLabel}</span>
+          <strong>{metricOneValue}</strong>
         </div>
 
         <div>
-          <span>Potencia</span>
-          <strong>{power} kW</strong>
+          <span>{metricTwoLabel}</span>
+          <strong>{metricTwoValue}</strong>
         </div>
       </div>
 

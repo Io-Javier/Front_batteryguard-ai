@@ -1,30 +1,38 @@
-
 import {
   LayoutDashboard,
-  Home,
+  Car,
   ChartNoAxesCombined,
-  List,
-  Zap,
   Settings,
   Activity,
-  BrainCircuit
+  BrainCircuit,
+  UserPlus,
+  LogOut
 } from "lucide-react";
+import batteryGuardIcon from "../assets/batteryguard-icon.png";
 
 const menuItems = [
   { name: "Dashboard", icon: LayoutDashboard },
-  { name: "Vista principal", icon: Home },
-  { name: "Análisis y resumen", icon: ChartNoAxesCombined },
-  { name: "Listado y filtros", icon: List },
+  { name: "Vehículos", icon: Car },
   { name: "Simulación de IA", icon: BrainCircuit },
+  { name: "Análisis y resumen", icon: ChartNoAxesCombined },
+  { name: "Agregar empleado", icon: UserPlus, adminOnly: true },
 ];
 
-export default function Sidebar({ active, setActive }) {
+export default function Sidebar({ active, setActive, onLogout, userRole }) {
+  const visibleMenuItems = menuItems.filter(
+    (item) => !item.adminOnly || userRole === "Administrador"
+  );
+
   return (
     <aside className="sidebar">
 
       <div className="brand">
-        <div className="brand-logo">
-          <Zap size={23} />
+        <div className="brand-logo brand-logo-img-wrap">
+          <img
+            src={batteryGuardIcon}
+            alt="BatteryGuard"
+            className="brand-logo-img"
+          />
         </div>
 
         <div>
@@ -38,11 +46,12 @@ export default function Sidebar({ active, setActive }) {
       </div>
 
       <nav className="menu">
-        {menuItems.map((item) => {
+        {visibleMenuItems.map((item) => {
           const Icon = item.icon;
 
           return (
             <button
+              type="button"
               key={item.name}
               className={`menu-item ${
                 active === item.name ? "active" : ""
@@ -64,10 +73,27 @@ export default function Sidebar({ active, setActive }) {
           <i />
         </div>
 
-        <button className="menu-item">
+        <button
+          type="button"
+          className={`menu-item ${
+            active === "Configuración" ? "active" : ""
+          }`}
+          onClick={() => setActive("Configuración")}
+        >
           <Settings size={18} />
           <span>Configuración</span>
         </button>
+
+        {onLogout && (
+          <button
+            type="button"
+            className="menu-item logout-menu-item"
+            onClick={onLogout}
+          >
+            <LogOut size={18} />
+            <span>Cerrar sesión</span>
+          </button>
+        )}
 
         <small>BATTERYGUARD v1.0</small>
 

@@ -1,38 +1,41 @@
-
 import {
-  Zap,
+  BatteryCharging,
   Activity,
-  Gauge,
-  ChartLine
+  Zap,
+  Thermometer
 } from "lucide-react";
 
 export const stats = [
   {
-    title: "Voltaje promedio",
-    value: "220.4",
+    key: "state_of_charge",
+    title: "Nivel de carga (SoC)",
+    value: "0",
+    unit: "%",
+    icon: BatteryCharging,
+    change: "Sin datos"
+  },
+  {
+    key: "state_of_health",
+    title: "Salud de batería (SoH)",
+    value: "0",
+    unit: "%",
+    icon: Activity,
+    change: "Sin datos"
+  },
+  {
+    key: "pack_voltage",
+    title: "Voltaje del paquete",
+    value: "0.0",
     unit: "V",
     icon: Zap,
-    change: "↑ 2.4% respecto al anterior"
+    change: "Sin datos"
   },
   {
-    title: "Corriente total",
-    value: "46.9",
-    unit: "A",
-    icon: Activity,
-    change: "↓ 1.2% respecto al anterior"
-  },
-  {
-    title: "Potencia activa",
-    value: "10.3",
-    unit: "kW",
-    icon: Gauge,
-    change: "↑ 4.8% respecto al anterior"
-  },
-  {
-    title: "Factor de potencia",
-    value: "0.96",
-    unit: "",
-    icon: ChartLine,
-    change: "Estado óptimo"
+    key: "cell_temperature_max",
+    title: "Temp. máx. de celda",
+    value: "0.0",
+    unit: "°C",
+    icon: Thermometer,
+    change: "Sin datos"
   }
 ];

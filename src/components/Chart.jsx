@@ -1,4 +1,4 @@
-
+import { useState } from "react";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -9,32 +9,48 @@ import {
   Tooltip
 } from "recharts";
 
-const chartData = [
-  { hora: "00:00", consumo: 18 },
-  { hora: "02:00", consumo: 25 },
-  { hora: "04:00", consumo: 20 },
-  { hora: "06:00", consumo: 35 },
-  { hora: "08:00", consumo: 30 },
-  { hora: "10:00", consumo: 48 },
-  { hora: "12:00", consumo: 42 },
-  { hora: "14:00", consumo: 65 },
-  { hora: "16:00", consumo: 55 },
-  { hora: "18:00", consumo: 78 },
-  { hora: "20:00", consumo: 68 },
-  { hora: "22:00", consumo: 85 },
+const emptyChartData = [
+  { hora: "00:00", soc: 0 },
+  { hora: "02:00", soc: 0 },
+  { hora: "04:00", soc: 0 },
+  { hora: "06:00", soc: 0 },
+  { hora: "08:00", soc: 0 },
+  { hora: "10:00", soc: 0 },
+  { hora: "12:00", soc: 0 },
+  { hora: "14:00", soc: 0 },
+  { hora: "16:00", soc: 0 },
+  { hora: "18:00", soc: 0 },
+  { hora: "20:00", soc: 0 },
+  { hora: "22:00", soc: 0 },
 ];
 
-export default function Chart() {
+export default function Chart({
+  data = emptyChartData,
+  title = "Comportamiento del paquete de batería",
+  subtitle = "Evolución del nivel de carga (SoC %) y pruebas BMS",
+  onRangeChange,
+}) {
+  const [range, setRange] = useState("today");
+  const chartData = data.length > 0 ? data : emptyChartData;
+
+  const handleRangeChange = (event) => {
+    const nextRange = event.target.value;
+    setRange(nextRange);
+    if (onRangeChange) {
+      onRangeChange(nextRange);
+    }
+  };
+
   return (
     <div className="chart-container">
 
       <div className="chart-header">
         <div>
-          <h3>Consumo energético</h3>
-          <p>Historial de consumo eléctrico</p>
+          <h3>{title}</h3>
+          <p>{subtitle}</p>
         </div>
 
-        <select defaultValue="today">
+        <select value={range} onChange={handleRangeChange}>
           <option value="today">Hoy</option>
           <option value="week">Esta semana</option>
           <option value="month">Este mes</option>
@@ -69,6 +85,7 @@ export default function Chart() {
               fontSize={10}
               tickLine={false}
               axisLine={false}
+              domain={[0, 100]}
             />
 
             <Tooltip
@@ -82,7 +99,8 @@ export default function Chart() {
 
             <Area
               type="monotone"
-              dataKey="consumo"
+              dataKey="soc"
+              name="SoC (%)"
               stroke="#00d6a0"
               strokeWidth={3}
               fill="url(#colorConsumo)"
